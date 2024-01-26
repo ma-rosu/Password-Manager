@@ -23,6 +23,7 @@ namespace Password_Manager.Forms
             User = user;
             Log = logForm;
             InitializeComponent();
+            this.FormClosing += Exit;
             Refresh_Passwords();
         }
 
@@ -138,7 +139,7 @@ namespace Password_Manager.Forms
             }
             else
             {
-                MessageBox.Show("Username and Password input boxes can't be left with the value of null.");
+                MessageBox.Show("Username and Password fields can't be empty.");
             }
         }
 
@@ -148,7 +149,6 @@ namespace Password_Manager.Forms
         {
             SelectIdFormEditDelete select_id_form_edit = new SelectIdFormEditDelete(this, "delete");
             select_id_form_edit.Show();
-            Refresh_Passwords();
         }
 
         
@@ -162,12 +162,29 @@ namespace Password_Manager.Forms
             }
             else
             {
-                User.Entries[int.Parse(txtID.Text)].Update_Username(TxtUsername);
-                User.Entries[int.Parse(txtID.Text)].Update_Website(TxtWebsite);
-                User.Entries[int.Parse(txtID.Text)].Update_Password(TxtPassword);
-                txtID.Text = "0";
-                Refresh_Passwords();
+                if(TxtUsername.Length > 0 && TxtPassword.Length > 0)
+                {
+                    User.Entries[int.Parse(txtID.Text)].Update_Username(TxtUsername);
+                    if (TxtWebsite.Length > 0)
+                        User.Entries[int.Parse(txtID.Text)].Update_Website(TxtWebsite);
+                    else
+                        User.Entries[int.Parse(txtID.Text)].Update_Website("-");
+                    User.Entries[int.Parse(txtID.Text)].Update_Password(TxtPassword);
+                    txtID.Text = "0";
+                    Refresh_Passwords();
+                }
+                else
+                {
+                    MessageBox.Show("Username and Password fields can't be empty.");
+                }
             }
+        }
+
+
+        // For Exiting
+        private void Exit(object sender, EventArgs e)
+        {
+            Log.mainMenu = null;
         }
 
         

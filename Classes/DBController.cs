@@ -153,7 +153,7 @@ namespace Password_Manager.Classes
                 {
                     con.Open();
 
-                    using (SQLiteCommand cmd = new SQLiteCommand("select max(id) as max_id from entries", con))
+                    using (SQLiteCommand cmd = new SQLiteCommand("select ifnull(max(id), 0) as max_id from entries", con))
                     {
 
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -333,7 +333,6 @@ namespace Password_Manager.Classes
         // For deleting a entries
         public static void Delete_Entry(User user, Entry entry)
         {
-            bool result = false;
             try
             {
                 using (SQLiteConnection con = new SQLiteConnection(LoadConnectionString()))
@@ -343,7 +342,6 @@ namespace Password_Manager.Classes
                     {
                         cmd.Parameters.AddWithValue("@id", entry.Id);
                         cmd.ExecuteNonQuery();
-                        result = true;
                         user.Entries.Remove(entry.Id);
                     }
                     con.Close();
@@ -352,7 +350,6 @@ namespace Password_Manager.Classes
             }
             catch (Exception ex)
             {
-                result = false;
                 MessageBox.Show("There is a problem with the connection to the database.");
             }
         }

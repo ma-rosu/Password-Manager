@@ -28,7 +28,7 @@ namespace Password_Manager
         // VARIABLES
 
         private User user = new User(0, "", "");
-        MainMenuForm mainMenu = null;
+        public MainMenuForm mainMenu = null;
 
 
 
@@ -86,8 +86,16 @@ namespace Password_Manager
         // Function to go the the MainMenuForm to see your passwords
         private void btnSeePasswords_Click(object sender, EventArgs e)
         {
-            mainMenu = new MainMenuForm(this, new User(user.Id, user.Username, user.Password));
-            mainMenu.Show();
+            if(mainMenu == null)
+            {
+                mainMenu = new MainMenuForm(this, new User(user.Id, user.Username, user.Password));
+                mainMenu.Show();
+            }
+            else
+            {
+                MessageBox.Show("You already have a passwords window open.");
+            }
+            
         }
 
 
@@ -98,13 +106,14 @@ namespace Password_Manager
             user.Username = "";
             user.Password = "";
             txtChangePassword.Text = "";
-            panelChooseOption.Visible = false;
-            panelLogSign.Visible = true;
-            if(mainMenu != null)
+            if (mainMenu != null)
             {
                 mainMenu.Close();
                 mainMenu = null;
             }
+            panelChooseOption.Visible = false;
+            panelLogSign.Visible = true;
+            
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -112,7 +121,7 @@ namespace Password_Manager
             string password = txtChangePassword.Text;
             if (password.Length == 0)
             {
-                MessageBox.Show("Please fill both fields.");
+                MessageBox.Show("Please fill all fields.");
                 return;
             }
             user.Update(user, password);

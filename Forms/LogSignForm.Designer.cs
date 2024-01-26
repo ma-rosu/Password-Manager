@@ -30,6 +30,7 @@ namespace Password_Manager
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogSignForm));
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -220,6 +221,7 @@ namespace Password_Manager
             this.Controls.Add(this.panelChooseOption);
             this.Controls.Add(this.panelLogSign);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LogSignForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

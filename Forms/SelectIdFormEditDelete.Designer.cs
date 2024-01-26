@@ -30,6 +30,7 @@ namespace Password_Manager.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectIdFormEditDelete));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSelect = new System.Windows.Forms.TextBox();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@ namespace Password_Manager.Forms
             this.Controls.Add(this.txtSelect);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SelectIdFormEditDelete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelectIdForm";

@@ -30,6 +30,7 @@ namespace Password_Manager.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             this.flowPanelEntries = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblID = new System.Windows.Forms.Label();
@@ -366,6 +367,7 @@ namespace Password_Manager.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowPanelEntries);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1234, 808);
             this.MinimumSize = new System.Drawing.Size(1215, 808);
